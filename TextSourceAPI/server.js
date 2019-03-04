@@ -10,6 +10,10 @@ mongoose.connect('mongodb://localhost/Textsourcedb');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+//middleware to show the url is incorrect instead of a cannot get message
+app.use(function(req, res) {
+  res.status(404).send({url: req.originalUrl + ' not found'})
+});
 
 require('./api/controllers/textSourceController.js')(app);
 
