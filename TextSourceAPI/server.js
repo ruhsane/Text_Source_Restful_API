@@ -15,7 +15,8 @@ app.use(function(req, res) {
   res.status(404).send({url: req.originalUrl + ' not found'})
 });
 
-require('./api/controllers/textSourceController.js')(app);
+require('./api/controllers/textSourceController')(app);
+require('./api/controllers/authenticationController')(app);
 
 app.listen(port)
 

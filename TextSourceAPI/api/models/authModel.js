@@ -1,15 +1,14 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const textSourceSchema = new Schema({
-    title: {
+const userSchema = new Schema({
+    username: {
         type: String,
         required: true
     },
-    content: {
-        type: File,
+    password: {
+        type: password,
         required: true
-        // maxlength: 1000000
     },
     Created_date: {
         type: Date,
@@ -17,4 +16,4 @@ const textSourceSchema = new Schema({
     }
 });
 
-module.exports = mongoose.model('Text_Source', textSourceSchema);
+module.exports = mongoose.model('User', userSchema);
