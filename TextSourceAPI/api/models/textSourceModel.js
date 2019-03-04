@@ -6,6 +6,10 @@ const textSourceSchema = new Schema({
         type: String,
         required: true
     },
+    // file: {
+    //     type: file,
+    //     required: true
+    // },
     Created_date: {
         type: Date,
         default: Date.now
