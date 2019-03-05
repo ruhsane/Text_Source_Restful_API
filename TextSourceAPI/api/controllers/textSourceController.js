@@ -116,6 +116,10 @@ module.exports = app => {
         });
     });
 
+    app.get('/text_sources/:sourceId/get_markov_sentence', checkToken, (req, res) => {
+        
+    });
+
 }
 
 
