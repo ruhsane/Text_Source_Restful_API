@@ -30,6 +30,8 @@
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
     "jsonwebtoken": "^8.5.0",
-    "mongoose": "^5.4.16"
+    "mongodb": "^3.1.13",
+    "mongoose": "^5.4.16",
+    "multer": "^1.4.1"
   }
 }

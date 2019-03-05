@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
 const TextSource = require('../models/textSourceModel');
 const jwt = require('jsonwebtoken');
+const multer = require("multer");
+const upload = multer({ dest: "uploads/"});
+const fs = require("fs")
 
 module.exports = app => {
 
@@ -25,8 +28,8 @@ module.exports = app => {
     });
 
     //NEW TEXT SOURCE
-    app.post("/text_sources/new", checkToken, (req, res) => {
-
+    app.post("/text_sources/new", checkToken, upload.single("content"), (req, res) => {
+        console.log(req.file)
         //verify the JWT token generated for the user
         jwt.verify(req.token, process.env.SECRET, (err, authorizedData) => {
             if(err) {
@@ -35,6 +38,8 @@ module.exports = app => {
             } else {
                 //if token is successfully verify, send the authorized data
                 var new_source = new TextSource(req.body);
+                const data = fs.readFileSync(req.file.path)
+                new_source.content = data
                 new_source.save(function(err, source) {
                     if (err)
                         res.send(err);
