@@ -7,7 +7,7 @@ const textSourceSchema = new Schema({
         required: true
     },
     content: {
-        type: File,
+        type: String,
         required: true
         // maxlength: 1000000
     },

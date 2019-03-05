@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express'),
     app = express(),
     port = process.env.PORT || 3000;
@@ -10,13 +11,16 @@ mongoose.connect('mongodb://localhost/Textsourcedb');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+
+require('./api/controllers/textSourceController')(app);
+require('./api/controllers/authenticationController')(app);
+
+
 //middleware to show the url is incorrect instead of a cannot get message
 app.use(function(req, res) {
   res.status(404).send({url: req.originalUrl + ' not found'})
 });
-
-require('./api/controllers/textSourceController')(app);
-require('./api/controllers/authenticationController')(app);
 
 app.listen(port)
 

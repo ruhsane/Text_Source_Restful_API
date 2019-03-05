@@ -5,11 +5,12 @@ const mongoose = require('mongoose'),
 const userSchema = new Schema({
     username: {
         type: String,
+        unique: true,
         required: true
     },
     password: {
-        type: password,
-        required: true
+        type: String,
+        select:false
     },
     createdAt: { 
         type: Date 
