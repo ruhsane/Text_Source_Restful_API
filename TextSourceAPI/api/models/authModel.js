@@ -22,14 +22,14 @@ const userSchema = new Schema({
 
 userSchema.pre("save", function(next) {
     // SET createdAt AND updatedAt
-    var now = new Date();
+    const now = new Date();
     this.updatedAt = now;
     if (!this.createdAt) {
         this.createdAt = now;
     }
 
     //ENCRYPT PASSWORD
-    var user = this;
+    const user = this;
     if (!user.isModified("password")) {
         return next()
     }

@@ -21,19 +21,35 @@ module.exports = app => {
     });
 
     //LOG IN
-    app.post('/login', (req, res, next) => {
-        const { body } = req;
-        const { username }= body;
-        const { password } = body;
+    app.post('/login', (req, res) => {
 
-        if (username === User.username && password === User.password) {
-            jwt.sign({ _username: User._username }, process.env.SECRET, (err, token) => {
-                if(err) { console.log(err) }
-                res.send(token);
+        const username = req.body.username;
+        const password = req.body.password;
+    
+        //find this user name
+        User.findOne({ username }, "username password")
+            .then(user => {
+                if (!user) {
+                    //user not found
+                    return res.status(401).send({message: "Wrong username or password" });
+                }
+                //check the password
+                user.comparePassword(password, (err, isMatch) => {
+                    if (!isMatch) {
+                        //pasword does not match
+                        return res.status(401).send({ message: "Wrong username or password" });
+                    }
+                    //create a token
+                    const token = jwt.sign({ username: username }, process.env.SECRET, {
+                        expiresIn: "60 days"
+                    });
+                    res.json({'token': token});
+
+                });
+            })
+            .catch(err => {
+                console.log(err);
             });
-        } else {
-            console.log('ERROR: could not log in')
-        }
     })
 
     //protected route 
