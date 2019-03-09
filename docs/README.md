@@ -103,6 +103,8 @@ Successful Response:
 #### Update a text source
 ```js
 put('https://text-source-api.herokuapp.com/text_sources/:sourceId', { 
+    title: String,
+    content: String
 })
 ```
 Successful Response:
