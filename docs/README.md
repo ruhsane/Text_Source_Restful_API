@@ -42,15 +42,15 @@ Successful Response:
 ```
 
 
-###Authorized Routes
+### Authorized Routes
 
 
 #### Get all text sources
 ```js
 get('https://text-source-api.herokuapp.com/text_sources', {
 })
-
 ```
+
 Successful Response:
 ```json
 {
@@ -66,5 +66,4 @@ Successful Response:
     }
 ]
 }
-
 ```
