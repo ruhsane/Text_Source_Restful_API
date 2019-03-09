@@ -7,7 +7,7 @@ const express = require('express'),
     bodyParser = require('body-parser');
 
 mongoose.Promise = global.Promise
-mongoose.connect('mongodb://localhost/Textsourcedb');
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/Textsourcedb');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
