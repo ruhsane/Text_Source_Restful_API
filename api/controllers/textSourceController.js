@@ -7,6 +7,10 @@ const fs = require("fs")
 
 module.exports = app => {
 
+    //ROOT ROUTE
+    app.get("/", (req, res) => {
+        res.send("Welcome to my Text Source API! Start by calling my API with routes:  app.get('/text_sources'), app.post('/text_sources/new'),  app.get('/text_sources/:sourceId'), and app.delete('/text_sources/:sourceId') ")
+    })
     //ALL TEXT FILES
     app.get("/text_sources", checkToken, (req, res) => {
         //verify the JWT token generated for the user
