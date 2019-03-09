@@ -29,8 +29,8 @@ Successful Response:
 #### Login
 ```js
 post('https://text-source-api.herokuapp.com/login', {
-    username,
-    password
+    username: String
+    password: String
 })
 
 ```
@@ -65,5 +65,66 @@ Successful Response:
         ...
     }
 ]
+}
+```
+#### Upload a text file
+```js
+post('https://text-source-api.herokuapp.com/text_sources/new', {
+    title: String,
+    content: txt file    
+})
+```
+Successful Response:
+```json
+{
+    "_id": "id",
+    "title": "title",
+    "Created_date": "2019-03-09T11:17:38.067Z",
+    "content": "blah blah",
+    "__v": 0
+}
+```
+
+
+#### Read a single text source 
+```js
+get('https://text-source-api.herokuapp.com/text_sources/:sourceId', { 
+})
+```
+Successful Response:
+```json
+{
+    "_id": "id",
+    "title": "title",
+    "Created_date": "2019-03-05T05:07:09.420Z",
+    "content": "blah blah"
+}
+```
+
+#### Update a text source
+```js
+put('https://text-source-api.herokuapp.com/text_sources/:sourceId', { 
+})
+```
+Successful Response:
+```json
+{
+    "_id": "5c83a1f87afd960024cb0c13",
+    "title": "new title",
+    "Created_date": "2019-03-09T11:22:32.851Z",
+    "content": "new content",
+    "__v": 0
+}
+```
+
+#### Delete a text source
+```js
+delete('https://text-source-api.herokuapp.com/text_sources/:sourceId', { 
+})
+```
+Successful Response:
+```json
+{
+    message: "Text source successfully deleted"
 }
 ```
