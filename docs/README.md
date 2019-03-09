@@ -3,10 +3,10 @@
 ## What is Text Source API?
 An awesome project that you can post/get/delete/update text sources such as stories, speeches etc.
 
-##Upcoming future?
+## Upcoming future?
 Takes in a text source of your choice,  analyzes the whole text using 2nd order Markov Chain and generates a sentence.
 
-##API CALLS
+## API CALLS
 ### Authentication
 
 **baseURL:** https://text-source-api.herokuapp.com
@@ -24,6 +24,7 @@ Successful Response:
 {
     "token": "thisxxxis.axxxjson.webxxxtoken"
 }
+```
 
 #### Login
 ```js
@@ -38,6 +39,7 @@ Successful Response:
 {
     "token": "thisxxxis.axxxjson.webxxxtoken"
 }
+```
 
 
 ###Authorized Routes
@@ -65,3 +67,4 @@ Successful Response:
 ]
 }
 
+```
