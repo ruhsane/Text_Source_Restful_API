@@ -94,6 +94,7 @@ module.exports = app => {
 
     });
 
+    //DELETE A SOURCE
     app.delete('/text_sources/:sourceId', checkToken, (req, res) => {
 
         //verify the JWT token generated for the user
@@ -116,9 +117,6 @@ module.exports = app => {
         });
     });
 
-    app.get('/text_sources/:sourceId/get_markov_sentence', checkToken, (req, res) => {
-        
-    });
 
 }
 
