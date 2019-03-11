@@ -4,7 +4,6 @@ const User = require('../models/authModel');
 module.exports = (app) => {
   // SIGN UP
   app.post('/sign-up', (req, res) => {
-    console.log(req.body);
     const user = new User(req.body);
 
     user
