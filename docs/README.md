@@ -1,11 +1,11 @@
 # Table of Contents
 
-## What is Text Source API?
-An awesome project that you can post/get/delete/update text sources such as stories, speeches etc.
-**baseURL:** https://text-source-api.herokuapp.com
+## What is Tweet Generator API?
+An awesome project that users can post/get/delete/update text sources such as stories, speeches etc.
+ADDITIONALLY, it can generate a sentence based on Markov chain for any of these text sources.
+(thus making it a tweet generator considering each generated sentence as a tweet.)
 
-## Upcoming feature?
-Takes in a text source of your choice,  analyzes the whole text using 2nd order Markov Chain and generates a sentence.
+**baseURL:** https://text-source-api.herokuapp.com
 
 ## API CALLS
 ### Authentication
@@ -128,4 +128,15 @@ Successful Response:
 {
     message: "Text source successfully deleted"
 }
+```
+
+
+#### Markov Sentence For a Text Source
+```js
+get('https://text-source-api.herokuapp.com/text_sources/:sourceId/get_markov', { 
+})
+```
+Successful Response:
+```json
+"generated text by markov chain"
 ```
