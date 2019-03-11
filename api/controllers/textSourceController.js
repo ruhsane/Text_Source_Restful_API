@@ -4,13 +4,15 @@ const jwt = require('jsonwebtoken');
 const multer = require("multer");
 const upload = multer({ dest: "uploads/"});
 const fs = require("fs")
+const axios = require("axios")
 
 module.exports = app => {
 
     //ROOT ROUTE
     app.get("/", (req, res) => {
-        res.send("Welcome to my Text Source API! Start by calling my API with routes:  app.get('/text_sources'), app.post('/text_sources/new'),  app.get('/text_sources/:sourceId'), and app.delete('/text_sources/:sourceId') ")
+        res.json( {welcome: "Welcome to my Text Source API! Start by reading my documentation here https://ruhsane.github.io/Text_Source_Restful_API/#/ "})
     })
+
     //ALL TEXT FILES
     app.get("/text_sources", checkToken, (req, res) => {
         //verify the JWT token generated for the user
@@ -23,7 +25,7 @@ module.exports = app => {
                 //if token is successfully verify, send the authorized data
                 TextSource.find({}, function(err, source) {
                     if (err)
-                        res.send(err);
+                        res.json(err);
                     res.json(source);
                 });
                 console.log('SUCCESS: connected to protected route');
@@ -46,7 +48,7 @@ module.exports = app => {
                 new_source.content = data
                 new_source.save(function(err, source) {
                     if (err)
-                        res.send(err);
+                        res.json(err);
                     res.json(source);
                 });
                 console.log('SUCCESS: connected to protected route');
@@ -66,7 +68,7 @@ module.exports = app => {
                 //if token is successfully verify, send the authorized data
                 TextSource.findById(req.params.sourceId, function(err, source) {
                     if (err)
-                      res.send(err);
+                      res.json(err);
                     res.json(source);
                 });
                 console.log('SUCCESS: connected to protected route');
@@ -76,7 +78,7 @@ module.exports = app => {
     });
 
      //UPDATE A SOURCE
-    app.put('/text_sources/:sourceId', checkToken, (req, res) => {
+     app.put('/text_sources/:sourceId', checkToken, (req, res) => {
 
         //verify the JWT token generated for the user
         jwt.verify(req.token, process.env.SECRET, (err, authorizedData) => {
@@ -88,7 +90,7 @@ module.exports = app => {
         
                 TextSource.findOneAndUpdate({_id: req.params.sourceId}, req.body, {new: true}, function(err, source){
                     if (err)
-                        res.send(err);
+                        res.json(err);
                     res.json(source);
             
                 });
@@ -97,6 +99,9 @@ module.exports = app => {
         });
 
     });
+
+
+
 
     //DELETE A SOURCE
     app.delete('/text_sources/:sourceId', checkToken, (req, res) => {
@@ -113,7 +118,7 @@ module.exports = app => {
                     _id: req.params.sourceId
                 }, function(err, source) {
                     if (err)
-                        res.send(err);
+                        res.json(err);
                     res.json({ message: "Text source successfully deleted"});                
                 });
                 console.log('SUCCESS: connected to protected route');
@@ -121,9 +126,39 @@ module.exports = app => {
         });
     });
 
+    //GET MARKOV CHAIN API
+    app.get('/text_sources/:sourceId/get_markov', checkToken, (req, res) => {
 
-}
+        //verify the JWT token generated for the user
+        jwt.verify(req.token, process.env.SECRET, (err, authorizedData) => {
+            if(err) {
+                console.log('ERROR: cold not connect to the protected route');
+                res.sendStatus(403);
+            } else {
+                //Find the text source we are about to generate sentence on 
+                TextSource.findById(req.params.sourceId, function(err, source) {
+                    if (err)
+                      res.json(err);
+                    
+                    //Take in the source as the parameter to my text generator api
+                    axios.post('https://donald-trump-tweet-generator.herokuapp.com/api', source)
+                      .then(function (response) {
+                        //get the markov chain generated sentence
+                        res.json(response.data)
+                      })
+                      .catch(function (error) {
+                        res.json(error);
+                      });
 
+                });
+
+            }
+        })
+
+
+    })
+
+}  
 
 //check to make sure header is not undefined, if so return forbidden 403
 const checkToken = (req, res, next) => {
