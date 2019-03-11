@@ -2,7 +2,9 @@
 
 ## What is Tweet Generator API?
 An awesome project that users can post/get/delete/update text sources such as stories, speeches etc.
+
 ADDITIONALLY, it can generate a sentence based on Markov chain for any of these text sources.
+
 (thus making it a tweet generator considering each generated sentence as a tweet.)
 
 **baseURL:** https://text-source-api.herokuapp.com
