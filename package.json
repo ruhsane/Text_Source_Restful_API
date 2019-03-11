@@ -20,7 +20,11 @@
     "url": "https://github.com/ruhsane/Text_Source_Restful_API/issues"
   },
   "homepage": "https://github.com/ruhsane/Text_Source_Restful_API#readme",
-  "devDependencies": {},
+  "devDependencies": {
+    "eslint": "^5.15.1",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.16.0"
+  },
   "dependencies": {
     "axios": "^0.18.0",
     "bcryptjs": "^2.4.3",
