@@ -7,7 +7,7 @@ ADDITIONALLY, it can generate a sentence based on Markov chain for any of these 
 
 **baseURL:** https://text-source-api.herokuapp.com
 
-## API CALLS
+## Documentation
 ### Authentication
 
 #### Signing up
