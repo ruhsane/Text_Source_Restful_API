@@ -8,5 +8,5 @@
 - Generate a predicted sentence
 - It is that easy
 
-[GitHub](https://github.com/ruhsane/bew1.2-testdocs)
+[GitHub](https://github.com/ruhsane/Text_Source_Restful_API)
 [Get Started](#table-of-contents)
