@@ -134,6 +134,8 @@ Successful Response:
 
 
 #### Markov Sentence For a Text Source
+##### Markov Chain algorithm implementation: https://github.com/ruhsane/Tweet-Generator-OOP
+
 ```js
 get('https://text-source-api.herokuapp.com/text_sources/:sourceId/get_markov', { 
 })
