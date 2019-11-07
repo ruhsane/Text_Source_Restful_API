@@ -9,6 +9,11 @@ ADDITIONALLY, it can generate a sentence based on Markov chain for any of these 
 
 **baseURL:** https://text-source-api.herokuapp.com
 
+## Example Project:
+Predicts and generates a tweet that Donald Trump could tweet using Markov Chain based on corpus of all his past speeches (168k+ words). 
+Website: www.donald-trump-tweet-generator.herokuapp.com/ (New sentence each refresh)
+Markov Chain Algorithm: https://github.com/ruhsane/Tweet-Generator-OOP
+
 ## Documentation
 ### Authentication
 
